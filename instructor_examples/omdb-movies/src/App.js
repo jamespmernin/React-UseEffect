@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Form from './components/Form'
 import MovieInfo from './components/MovieInfo'
@@ -6,21 +6,38 @@ import MovieInfo from './components/MovieInfo'
 function App() {
 
   const [movieData, setMoviedata] = useState({})
+  const [movieTitle, setMovieTitle] = useState('star trek')
+
+  // useEffect with ,[] is componentDidMount
+  // componentDidMount runs only once when the component is mounted
+  useEffect( () => {
+    console.log('inside useEffect - componentDidMount')
+    const movieUrl = `https://www.omdbapi.com/?t=${movieTitle}&apikey=98e3fb1f`;
+    const makeApiCall = async () => {
+      const res = await fetch(movieUrl)
+      const json = await res.json()
+      setMoviedata(json)
+    }
+    makeApiCall()
+  },[])
+
+  // useEffect without ,[] is componentDidUpdate
+  // componentDidUpdate runs everytime the component rerenders
+  useEffect( () => {
+    console.log('inside useEffect - componentDidUpdate')
+    const movieUrl = `https://www.omdbapi.com/?t=${movieTitle}&apikey=98e3fb1f`;
+    const makeApiCall = async () => {
+      const res = await fetch(movieUrl)
+      const json = await res.json()
+      setMoviedata(json)
+    }
+    makeApiCall()
+  }, [movieTitle])
 
   // Refactor handleSubmit for async/await
   // allows us to run our code in a synchronous fashion
   const handleSubmit = async title => {
-
-    let movieUrl = `https://www.omdbapi.com/?t=${title}&apikey=98e3fb1f`;
-    
-    // the await keyword is used to handle the Promise and it 
-    // replaces the .then() method
-    const res = await fetch(movieUrl)
-    const json =  await res.json()
-
-    console.log('handleSubmit - json', json)
-
-    setMoviedata(json)
+     setMovieTitle(title)
   }
 
 
