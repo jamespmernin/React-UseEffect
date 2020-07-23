@@ -73,8 +73,7 @@ function App() {
     const movieUrl = `https://www.omdbapi.com/?t=${movieTitle}&apikey=98e3fb1f`;
     const makeApiCall = async () => {
       const res = await axios(movieUrl)
-      const json = await res.json()
-      setMoviedata(json)
+      setMoviedata(res)
     }
     makeApiCall()
   })
