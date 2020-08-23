@@ -69,7 +69,7 @@ function App() {
   const [movieData, setMoviedata] = useState({})
   const [movieTitle, setMovieTitle] = useState('star trek')
 
-  useEffect( () => {
+  useEffect(() => {
     const movieUrl = `https://www.omdbapi.com/?t=${movieTitle}&apikey=98e3fb1f`;
     const makeApiCall = async () => {
       const res = await axios(movieUrl)
@@ -96,7 +96,7 @@ In many cases, you will want to optimize the component so that side effects only
 
 The `useEffect()` hook provides for these scenarios by accepting an array as a second argument.
 
-The array is designed to hold a list of dependencies, that is, a list of variables and/or object properties that causes the side effect to run only if at least one of the dependencies change their value.
+The array is designed to hold a list of dependencies, that is, a list of variables and/or object properties that causes the side effect to run only if at least one of the dependencies change their value. If we forego the second argument entirely, the effect will run after every render.
 
 Providing an empty array (`[]`), will result in the side effect only running after the **initial** render.  Let's check this out:
 
