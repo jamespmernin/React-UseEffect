@@ -2,18 +2,11 @@ import React, { useState } from "react";
 
 function Form(props) {
   const [movieTitle, setMovieTitle] = useState("");
-  //console.log("Form - movieTitle", movieTitle);
-  const handleSubmit = (e) => {
-    //console.log('handleSubmit clicked')
-    e.preventDefault();
-    props.handleSubmit(movieTitle);
-    setMovieTitle("");
-  };
 
-  const handleChange = (e) => {
-    //console.log('handleChange clicked - value', e.target.value);
-    const title = e.target.value;
-    setMovieTitle(title);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.setNewSearch(movieTitle);
+    setMovieTitle("");
   };
 
   return (
@@ -24,7 +17,7 @@ function Form(props) {
           id="movieTitle"
           type="text"
           value={movieTitle}
-          onChange={handleChange}
+          onChange={(e) => setMovieTitle(e.target.value)}
         />
         <input type="submit" value="Find Movie Info" />
       </form>
