@@ -64,21 +64,21 @@ Side effects include performing tasks such as:
 Like `useState()` and other hooks, because they are functions, we just invoke them from the top-level of the function component:
 
 ```js
-function App() {
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-  const [movieData, setMoviedata] = useState({})
-  const [movieTitle, setMovieTitle] = useState('star trek')
+function App() {
+  const [movieData, setMovieData] = useState({})
+  const [newSearch, setNewSearch] = useState('star trek')
 
   useEffect(() => {
-    const movieUrl = `https://www.omdbapi.com/?t=${movieTitle}&apikey=98e3fb1f`;
+    const movieUrl = `https://www.omdbapi.com/?t=${newSearch}&apikey=98e3fb1f`;
     const makeApiCall = async () => {
-      const res = await axios(movieUrl)
-      setMoviedata(res)
+      const resp = await axios.get(movieUrl)
+      setMovieData(res.data)
     }
     makeApiCall()
   })
-
-...
 ```
 
 `useEffect()` takes a callback function as its first and only _required_ argument.
@@ -115,22 +115,21 @@ Here useffect will run anytime the movieTitle has been changed in state.  When m
 
 ```js
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function Example() {
+function App() {
   const [movieData, setMovieData] = useState({});
-  const [movieTitle, setMovieTitle] = useState('star wars')
+  const [newSearch, setNewSearch] = useState('star wars')
   
   useEffect(() => {
-    const movieUrl = `https://www.omdbapi.com/?t=${movieTitle}&apikey=98e3fb1f`;
+    const movieUrl = `https://www.omdbapi.com/?t=${newSearch}&apikey=98e3fb1f`;
     const makeApiCall = async () => {
-      const res = await fetch(movieUrl)
-      const json = await res.json()
-      setMovieData(json)
+      const resp = await axios.get(movieUrl)
+      setMovieData(res.data)
     }
     makeApiCall()
-  }, [movieTitle])
+  }, [newSearch])
 }
-
 ```
 
 ## Review Questions
