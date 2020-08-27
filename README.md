@@ -2,9 +2,7 @@
 
 # The Component Life Cycle
 
-So far, we've used react components to build simple applications. We've added
-state and props and controlled data flow through them using hooks. In order to do more complex things, we'll have to use
-React Hooks.
+So far, we've used react components to build simple applications. We've added state and props and controlled data flow through them using hooks. In order to do more complex things, we'll have to use React Hooks.
 
 ## Prerequisites
 
@@ -17,7 +15,7 @@ React Hooks.
 By the end of this, developers should be able to:
 
 - Explain how to use React's useEffect
-- Use asynchronous functions within react
+- Use asynchronous functions within React
 - Retrieve data from an API inside of a component
 
 ## Introduction
@@ -27,8 +25,8 @@ data, but our component would likely render before the AJAX request finished.
 Our component would see that our data is `undefined` and either render a
 blank/empty component or throw an error.
 
-How do we incorporate third party libraries like `fetch` or `axios` with React?
-It sounds complicated... Do we put that in render?
+How do we incorporate third party libraries like `axios` with React?
+It sounds complicated... Do we put that in the return?
 
 This lesson will introduce the Component Life Cycle: hooks that are fired at
 different states of a components "life" for solving the problems described
@@ -42,9 +40,9 @@ So, what is the Component Life Cycle?
 
 When we create a React component we have a few events that happen over the course of its lifecycle. First -- it mounts, or it renders onto the page. Then, `state` and `props` can update. Finally, the component unmounts from the dom.
 
-Here is a good diagram of the [Lifecycle Methods](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+Here is a good diagram of the [Lifecycle Methods](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).
 
-`useEffect` runs when these lifecycle events occur.
+Instead of the above methods, which are used in class components, `useEffect` runs when these lifecycle events occur in functional components with hooks.
 
 We will use the `useEffect` hook to perform "side effects".
 
@@ -85,7 +83,7 @@ function App() {
 
 **By default, the effect's callback function is going be invoked after every render of the component.**
 
-Let's observe this by creating a button which modifies `movieTitle`.
+Let's observe this by creating a button which modifies `newSearch`.
 
 #### Preventing Side Effects from Running
 
@@ -111,7 +109,7 @@ Clear the console and refresh. The "useEffect was called" message will be logged
 
 ### Adding Search Functionality
 
-Here useffect will run anytime the movieTitle has been changed in state.  When movieTitle has been changed then the `makeApiCall()` function is exectued.  If fetching the data has been successful then it will update `setMovieData` to the returned data. 
+Here `useEffect` will run anytime the `newSearch` has been changed in state.  When `newSearch` has been changed then the `makeApiCall()` function is exectued.  If fetching the data has been successful then it will update `setMovieData` to the returned data. 
 
 ```js
 import React, { useState, useEffect } from 'react';
