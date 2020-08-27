@@ -6,13 +6,13 @@ import './App.css';
 
 function App() {
   const [movieData, setMovieData] = useState({})
-  const [newSearch, setNewSearch] = useState('');
+  const [newSearch, setNewSearch] = useState('star trek');
 
   // useEffect with ,[] is componentDidMount
   // componentDidMount runs only once when the component is mounted
   useEffect( () => {
     console.log('inside useEffect - componentDidMount')
-    const movieUrl = `https://www.omdbapi.com/?t=star%20trek&apikey=98e3fb1f`;
+    const movieUrl = `https://www.omdbapi.com/?t=${newSearch}&apikey=98e3fb1f`;
     const makeApiCall = async () => {
       const resp = await axios.get(movieUrl)
       setMovieData(resp.data)
