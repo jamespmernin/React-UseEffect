@@ -38,7 +38,7 @@ So, what is the Component Life Cycle?
 
 ### The Life Cycle Methods (10 min / 0:20)
 
-When we create a React component we have a few events that happen over the course of its lifecycle. First -- it mounts, or it renders onto the page. Then, `state` and `props` can update. Finally, the component unmounts from the dom.
+When we create a React component we have a few events that happen over the course of its lifecycle. First -- it **mounts**, or it **renders** onto the page. Then, `state` and `props` can update. Finally, the component unmounts from the dom.
 
 Here is a good diagram of the [Lifecycle Methods](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).
 
